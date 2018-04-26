@@ -1,4 +1,6 @@
 {
+  "name": "WhereAbouts",
+  "displayName": "WhereAbouts",
   "expo": {
     "sdkVersion": "26.0.0"
   }
