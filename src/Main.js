@@ -1,13 +1,19 @@
 // src/App.js
 
 import React from 'react'
-import { StatusBar } from 'react-native'
+import { StyleSheet, StatusBar } from 'react-native'
+import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 
 import { connect } from 'react-redux'
 import { Auth } from 'aws-amplify'
 
 import Tabs from './components/auth/Tabs'
 import Nav from './components/nav/Nav'
+
+import LoginScreen from './components/login/LoginScreen';
+import AuthenticateScreen from './components/login/AuthenticateScreen';
+import Dashboard from './components/dashboard/Dashboard';
+import Wallpaper from './components/Wallpaper';
 
 class Main extends React.Component {
   state = {
@@ -43,10 +49,55 @@ class Main extends React.Component {
       )
     }
     return (
-      <Tabs />
+      <Wallpaper>
+        <Router sceneStyle={styles.sceneStyle}
+          navigationBarStyle={{backgroundColor: 'transparent', borderBottomWidth: 0 }}
+          getSceneStyle={()=>styles.sceneStyle}>
+  	      <Scene key="root">
+  	        <Scene key="loginScreen"
+  	          component={LoginScreen}
+  	        	animation='fade'
+  	          hideNavBar={true}
+  	          initial={true}
+  	        />
+  	        <Scene key="authenticateScreen"
+  	          component={AuthenticateScreen}
+  	          animation='fade'
+  	          hideNavBar={true}
+  	        />
+            <Scene key="dashboard"
+  	          component={Dashboard}
+  	          animation='fade'
+  	          hideNavBar={true}
+  	        />
+  	      </Scene>
+  	    </Router>
+      </Wallpaper>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  sceneStyle: {
+    opacity: 1,
+    flex: 1,
+    backgroundColor: 'transparent',
+    shadowColor: null,
+    shadowOffset: null,
+    shadowOpacity: null,
+    shadowRadius: null,
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%'
+  },
+  viewStyle: {
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    width: '100%',
+    height: '100%'
+  }
+});
 
 const mapStateToProps = state => ({
   auth: state.auth

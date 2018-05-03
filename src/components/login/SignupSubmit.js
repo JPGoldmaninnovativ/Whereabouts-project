@@ -43,13 +43,12 @@ export default class ButtonSubmit extends Component {
       easing: Easing.linear,
     }).start();
 
-    this.props.onPress()
-    /*
     setTimeout(() => {
       this._onGrow();
     }, 2000);
-    */
+
     setTimeout(() => {
+      Actions.dashboard();
       this.setState({isLoading: false});
       this.buttonAnimated.setValue(0);
       this.growAnimated.setValue(0);
@@ -84,7 +83,7 @@ export default class ButtonSubmit extends Component {
             {this.state.isLoading ? (
               <Image source={spinner} style={styles.image} />
             ) : (
-              <Text style={styles.text}>{this.props.value}</Text>
+              <Text style={styles.text}>LOGIN</Text>
             )}
           </TouchableOpacity>
           <Animated.View
@@ -95,11 +94,6 @@ export default class ButtonSubmit extends Component {
     );
   }
 }
-
-ButtonSubmit.propTypes = {
-  onPress: PropTypes.func,
-  value: PropTypes.string,
-};
 
 const styles = StyleSheet.create({
   container: {

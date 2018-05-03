@@ -14,7 +14,7 @@ import arrowImg from '../../images/ic_trending_flat_black_48dp/web/ic_trending_f
 
 const SIZE = 40;
 
-export default class SecondScreen extends Component {
+export default class Dashboard extends Component {
   constructor() {
     super();
 
@@ -78,14 +78,14 @@ const styles = StyleSheet.create({
     height: SIZE,
     borderRadius: 100,
     zIndex: 99,
-    backgroundColor: '#F035E0',
+    backgroundColor: '#FFFFFF',
   },
   circle: {
     height: SIZE,
     width: SIZE,
     marginTop: -SIZE,
     borderRadius: 100,
-    backgroundColor: '#F035E0',
+    backgroundColor: '#FFFFFF',
   },
   image: {
     width: 24,

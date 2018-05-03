@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Text, Image} from 'react-native';
 
-import logoImg from '../../images/ic_account_circle_black_48dp/android/drawable-xxxhdpi/ic_account_circle_black_48dp.png';
+import logoImg from '../images/ic_account_circle_black_48dp/android/drawable-xxxhdpi/ic_account_circle_black_48dp.png';
 
 export default class Logo extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Image source={logoImg} style={styles.image} />
-        <Text style={styles.text}>REACT NATIVE</Text>
+        <Text style={styles.text}>WHEREABOUTS</Text>
       </View>
     );
   }
@@ -17,7 +17,7 @@ export default class Logo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 3,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'transparent',
     marginTop: 20,
+    fontSize: 18
   },
 });

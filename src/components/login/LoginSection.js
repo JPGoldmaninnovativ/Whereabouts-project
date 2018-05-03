@@ -2,16 +2,22 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Dimensions from 'Dimensions';
 import {StyleSheet, View, Text} from 'react-native';
+import {Actions, ActionConst} from 'react-native-router-flux';
 
-import SignupForm from './SignupForm';
-import SignupSubmit from './SignupSubmit'
+import LoginForm from './LoginForm';
+import ButtonSubmit from './ButtonSubmit'
 
-export default class SignupSection extends Component {
+export default class LoginSection extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SignupForm />
-        <SignupSubmit />
+        <LoginForm />
+        <ButtonSubmit value="LOGIN"
+          onPress={() => {
+            Actions.dashboard();
+            }
+          }
+        />
       </View>
     );
   }

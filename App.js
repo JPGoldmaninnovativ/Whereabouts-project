@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Font } from 'expo';
 
-import Main2 from './src/components/Main2';
 import Main from './src/Main';
 
 // redux
@@ -56,7 +55,9 @@ export default class App extends Component {
     if (this.state.fontLoaded) {
       return (
         <Provider store={store}>
-          <Main />
+          <View style={styles.container}>
+            <Main />
+          </View>
         </Provider>
       );
     }

@@ -15,6 +15,9 @@ export default class UserInput extends Component {
           autoCorrect={this.props.autoCorrect}
           autoCapitalize={this.props.autoCapitalize}
           returnKeyType={this.props.returnKeyType}
+          keyboardType={this.props.keyboardType}
+          onChangeText={this.props.onChangeText}
+          value={this.props.value}
           placeholderTextColor="white"
           underlineColorAndroid="transparent"
         />
@@ -30,6 +33,9 @@ UserInput.propTypes = {
   autoCorrect: PropTypes.bool,
   autoCapitalize: PropTypes.string,
   returnKeyType: PropTypes.string,
+  keyboardType: PropTypes.string,
+  onChangeText: PropTypes.func,
+  value: PropTypes.string,
 };
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -37,7 +43,7 @@ const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     width: DEVICE_WIDTH - 40,
     height: 40,
     marginHorizontal: 20,

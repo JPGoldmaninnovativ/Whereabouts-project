@@ -40,3 +40,6 @@ yarn-error.log*
 # aws
 aws-exports.js
 aws-config.js
+
+# images
+src/images/*
