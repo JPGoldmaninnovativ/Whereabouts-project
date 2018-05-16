@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Dimensions from 'Dimensions';
 import {
   StyleSheet,
+  Text,
   KeyboardAvoidingView,
   View,
   ActivityIndicator,
@@ -27,12 +28,6 @@ class LoginForm extends Component {
     username: '',
     password: '',
     accessCode: ''
-  }
-
-  onChangeText = (key, value) => {
-    this.setState({
-      [key]: value
-    })
   }
 
   signIn() {
@@ -71,29 +66,39 @@ class LoginForm extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <UserInput
+          value={this.state.username}
           source={usernameImg}
           placeholder="Username"
           autoCapitalize={'none'}
           returnKeyType={'done'}
           autoCorrect={false}
-          onChangeText={this.onChangeText}
-          value={this.state.username}
+          onChangeText={(text) => this.setState({
+            ['username']: text
+          })}
         />
         <UserInput
+          value={this.state.password}
           source={passwordImg}
           secureTextEntry={this.state.showPass}
           placeholder="Password"
           returnKeyType={'done'}
           autoCapitalize={'none'}
           autoCorrect={false}
-          onChangeText={this.onChangeText}
-          value={this.state.password}
+          onChangeText={(text) => this.setState({
+            ['password']: text
+          })}
         />
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.btnEye}
           onPress={this.showPass}>
         </TouchableOpacity>
+        <ButtonSubmit value="LOGIN"
+          onPress={() => {
+            this.signIn();
+            }
+          }
+        />
       </KeyboardAvoidingView>
     );
   }

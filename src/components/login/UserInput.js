@@ -18,6 +18,7 @@ export default class UserInput extends Component {
           keyboardType={this.props.keyboardType}
           onChangeText={this.props.onChangeText}
           value={this.props.value}
+          type={this.props.type}
           placeholderTextColor="white"
           underlineColorAndroid="transparent"
         />
@@ -36,6 +37,7 @@ UserInput.propTypes = {
   keyboardType: PropTypes.string,
   onChangeText: PropTypes.func,
   value: PropTypes.string,
+  type: PropTypes.string,
 };
 
 const DEVICE_WIDTH = Dimensions.get('window').width;

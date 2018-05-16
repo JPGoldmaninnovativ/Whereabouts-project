@@ -36,12 +36,7 @@ export default class ButtonSubmit extends Component {
   _onPress() {
     if (this.state.isLoading) return;
 
-    this.setState({isLoading: true});
-    Animated.timing(this.buttonAnimated, {
-      toValue: 1,
-      duration: 200,
-      easing: Easing.linear,
-    }).start();
+    this.startAnimating()
 
     this.props.onPress()
     /*
@@ -50,9 +45,7 @@ export default class ButtonSubmit extends Component {
     }, 2000);
     */
     setTimeout(() => {
-      this.setState({isLoading: false});
-      this.buttonAnimated.setValue(0);
-      this.growAnimated.setValue(0);
+      this.stopAnimating()
     }, 2300);
   }
 
@@ -62,6 +55,27 @@ export default class ButtonSubmit extends Component {
       duration: 200,
       easing: Easing.linear,
     }).start();
+  }
+
+  startAnimating() {
+    this.setState({isLoading: true});
+    Animated.timing(this.buttonAnimated, {
+      toValue: 1,
+      duration: 200,
+      easing: Easing.linear,
+    }).start();
+  }
+
+  stopAnimating() {
+    this.setState({isLoading: false});
+    this.buttonAnimated.setValue(0);
+    this.growAnimated.setValue(0);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    //const { auth: { isAuthenticating }} = nextProps
+    //console.log('asdfasdf2');
+    //console.log(nextProps);
   }
 
   render() {

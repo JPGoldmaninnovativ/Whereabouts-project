@@ -39,22 +39,15 @@ import {
     }
   }
 
-  export function createUser(username, password, email, phone_number) {
+  export function createUser(username, password, email) {
     return (dispatch) => {
+      email = email.trim()
       dispatch(signUp())
-      let phone
-      const firstTwoDigits = phone_number.substring(0, 2)
-      if (firstTwoDigits === '+1') {
-        phone = phone_number
-      } else {
-        phone = '+1' + phone_number
-      }
       Auth.signUp({
         username,
         password,
         attributes: {
-          email,
-          phone_number: phone
+          email
         }
       })
       .then(data => {
@@ -64,6 +57,12 @@ import {
       })
       .catch(err => {
         console.log('error signing up: ', err)
+        Alert.alert(
+          'Error signing up',
+          err.message,
+          [],
+          { cancelable: true }
+        )
         dispatch(signUpFailure(err))
       });
     }
@@ -105,6 +104,12 @@ import {
         })
         .catch(err => {
           console.log('errror from signIn: ', err)
+          Alert.alert(
+            'Error signing in',
+            err.message,
+            [],
+            { cancelable: true }
+          )
           dispatch(logInFailure(err))
         });
     }
@@ -134,6 +139,12 @@ import {
         })
         .catch(err => {
           console.log('error signing in: ', err)
+          Alert.alert(
+            'Error signing in',
+            err.message,
+            [],
+            { cancelable: true }
+          )
           dispatch(confirmSignUpFailure(err))
         })
     }
@@ -172,6 +183,12 @@ import {
         })
         .catch(err => {
           console.log('error signing up: ', err)
+          Alert.alert(
+            'Error signing up',
+            err.message,
+            [],
+            { cancelable: true }
+          )
           dispatch(confirmSignUpFailure(err))
         });
     }

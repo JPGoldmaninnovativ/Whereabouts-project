@@ -4,14 +4,12 @@ import Dimensions from 'Dimensions';
 import {StyleSheet, View, Text} from 'react-native';
 
 import SignupForm from './SignupForm';
-import SignupSubmit from './SignupSubmit'
 
 export default class SignupSection extends Component {
   render() {
     return (
       <View style={styles.container}>
         <SignupForm />
-        <SignupSubmit />
       </View>
     );
   }

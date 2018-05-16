@@ -49,6 +49,9 @@ class SignUp extends Component<{}> {
 
   componentWillReceiveProps(nextProps) {
     const { auth: { showSignUpConfirmationModal }} = nextProps
+    console.log('asdfasdf3');
+    console.log(nextProps);
+    console.log(this.prop.isAuthenticating)
     if (!showSignUpConfirmationModal && this.props.auth.showSignUpConfirmationModal) {
       this.setState(initialState)
     }

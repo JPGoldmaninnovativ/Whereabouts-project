@@ -5,7 +5,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {Actions, ActionConst} from 'react-native-router-flux';
 
 import LoginForm from './LoginForm';
-import ButtonSubmit from './ButtonSubmit'
+import ButtonSubmit from './ButtonSubmit';
 
 export default class LoginSection extends Component {
   render() {
@@ -14,7 +14,8 @@ export default class LoginSection extends Component {
         <LoginForm />
         <ButtonSubmit value="LOGIN"
           onPress={() => {
-            Actions.dashboard();
+            console.debug("asdf");
+            //Actions.dashboard();
             }
           }
         />
