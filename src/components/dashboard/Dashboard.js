@@ -9,6 +9,7 @@ import {
   Easing,
 } from 'react-native';
 import {Actions, ActionConst} from 'react-native-router-flux';
+import { Auth } from 'aws-amplify';
 
 import arrowImg from '../../images/ic_trending_flat_black_48dp/web/ic_trending_flat_black_48dp_2x.png';
 
@@ -38,6 +39,8 @@ export default class Dashboard extends Component {
     }).start();
 
     setTimeout(() => {
+      Auth.signOut()
+            .catch(err => console.log(err));
       Actions.pop();
     }, 500);
   }
