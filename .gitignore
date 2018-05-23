@@ -43,3 +43,5 @@ aws-config.js
 
 # images
 src/images/*
+
+package-lock.json

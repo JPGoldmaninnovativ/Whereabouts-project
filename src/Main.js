@@ -7,11 +7,6 @@ import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux'
 import { Auth } from 'aws-amplify'
 
-import Tabs from './components/auth/Tabs'
-import Nav from './components/nav/Nav'
-
-import LoginScreen from './components/login/LoginScreen';
-import AuthenticateScreen from './components/login/AuthenticateScreen';
 import Dashboard from './components/dashboard/Dashboard';
 import Wallpaper from './components/Wallpaper';
 
@@ -54,21 +49,11 @@ class Main extends React.Component {
           navigationBarStyle={{backgroundColor: 'transparent', borderBottomWidth: 0 }}
           getSceneStyle={()=>styles.sceneStyle}>
   	      <Scene key="root">
-  	        <Scene key="loginScreen"
-  	          component={LoginScreen}
-  	        	animation='fade'
-  	          hideNavBar={true}
-  	          initial={true}
-  	        />
-  	        <Scene key="authenticateScreen"
-  	          component={AuthenticateScreen}
-  	          animation='fade'
-  	          hideNavBar={true}
-  	        />
             <Scene key="dashboard"
   	          component={Dashboard}
   	          animation='fade'
   	          hideNavBar={true}
+  	          initial={true}
   	        />
   	      </Scene>
   	    </Router>
