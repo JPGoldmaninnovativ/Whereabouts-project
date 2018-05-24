@@ -19,17 +19,18 @@ import Logo from './src/components/Logo';
 import Dashboard from './src/components/dashboard/Dashboard';
 import UserInput from './src/components/login/UserInput';
 import UserButton from './src/components/login/UserButton';
+import DismissKeyboardHOC from './src/components/DismissKeyboardHOC'
 
 import usernameImg from './src/images/ic_account_circle_black_48dp/web/ic_account_circle_black_48dp_2x.png';
 import passwordImg from './src/images/ic_lock_black_48dp/web/ic_lock_black_48dp_2x.png';
 import eyeImg from './src/images/ic_account_circle_black_48dp/web/ic_account_circle_black_48dp_2x.png';
 
 // redux
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import rootReducer from './src/components/reducers'
-import thunk from 'redux-thunk'
-const store = createStore(rootReducer, applyMiddleware(thunk))
+//import { createStore, applyMiddleware } from 'redux'
+//import { Provider } from 'react-redux'
+//import rootReducer from './src/components/reducers'
+//import thunk from 'redux-thunk'
+//const store = createStore(rootReducer, applyMiddleware(thunk))
 
 // Amplify
 import Amplify from 'aws-amplify-react-native';
@@ -328,8 +329,9 @@ class Authentication extends Component {
   }
 
   render() {
+    const DismissKeyboardAuthenticator = DismissKeyboardHOC(Authenticator);
     return (
-        <Authenticator
+        <DismissKeyboardAuthenticator
             hideDefault={true}
             onStateChange={this.handleAuthStateChange}
             federated={federated}
@@ -341,7 +343,7 @@ class Authentication extends Component {
           <MyForgotPassword/>
           <VerifyContact/>
           <Greetings/>
-        </Authenticator>
+        </DismissKeyboardAuthenticator>
     );
   }
 }

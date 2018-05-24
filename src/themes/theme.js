@@ -47,7 +47,7 @@ const Styles = {
         justifyContent: 'space-between',
         position: 'absolute',
         height: 70,
-        top: DEVICE_HEIGHT/2-70,
+        top: DEVICE_HEIGHT*2/5,
         width: DEVICE_WIDTH,
     },
     sectionFooterLink: {
