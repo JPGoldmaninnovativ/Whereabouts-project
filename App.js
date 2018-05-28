@@ -11,15 +11,16 @@ import {
 } from 'react-native';
 import { Font } from 'expo';
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
+import DropdownAlert from 'react-native-dropdownalert';
 
-import { Styles } from  './src/themes/theme'
-import Main from './src/Main';
+import { Styles } from  './src/themes/theme';
 import Wallpaper from './src/components/Wallpaper';
 import Logo from './src/components/Logo';
 import Dashboard from './src/components/dashboard/Dashboard';
 import UserInput from './src/components/login/UserInput';
 import UserButton from './src/components/login/UserButton';
 import DismissKeyboardHOC from './src/components/DismissKeyboardHOC'
+import DropdownAlertComp from './src/components/DropdownAlertComp'
 
 import usernameImg from './src/images/ic_account_circle_black_48dp/web/ic_account_circle_black_48dp_2x.png';
 import passwordImg from './src/images/ic_lock_black_48dp/web/ic_lock_black_48dp_2x.png';
@@ -41,7 +42,6 @@ import {
   SignUp,
   ConfirmSignUp,
   ForgotPassword,
-  VerifyContact,
   Greetings } from 'aws-amplify-react-native';
 import { I18n } from 'aws-amplify';
 Amplify.configure(config);
@@ -64,6 +64,26 @@ const LinkCell = (props) => {
 }
 
 class MyForgotPassword extends ForgotPassword {
+  constructor(props) {
+    super(props);
+    this.mySend = this.mySend.bind(this);
+    this.mySubmit = this.mySubmit.bind(this);
+  }
+
+  mySend() {
+    this.send()
+  }
+
+  mySubmit() {
+    this.submit()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if ((prevState.error != this.state.error) && (this.state.error != undefined)) {
+      this.props.onError(this.state.error);
+    }
+  }
+
   forgotBody(theme) {
     return (
       <View style={theme.sectionBody}>
@@ -78,7 +98,7 @@ class MyForgotPassword extends ForgotPassword {
         <UserButton
             title={I18n.get('Resend a Code')}
             style={theme.button}
-            onPress={this.send}
+            onPress={this.mySend}
             disabled={!this.state.username}
         />
       </View>
@@ -108,7 +128,7 @@ class MyForgotPassword extends ForgotPassword {
         <UserButton
           title={I18n.get('Submit')}
           style={theme.button}
-          onPress={this.submit}
+          onPress={this.mySubmit}
           disabled={!this.state.username}
         />
       </View>
@@ -130,15 +150,26 @@ class MyForgotPassword extends ForgotPassword {
               {I18n.get('Back to Sign In')}
           </LinkCell>
         </View>
-        <View style={Styles.errorRow}>
-          <Text style={Styles.erroRowText}>{this.state.error}</Text>
-        </View>
       </KeyboardAvoidingView>
     );
   }
 }
 
 class MyConfirmSignUp  extends ConfirmSignUp  {
+  constructor(props) {
+    super(props);
+    this.myConfirm = this.myConfirm.bind(this);
+    this.myResend = this.myResend.bind(this);
+  }
+
+  myConfirm() {
+    this.confirm()
+  }
+
+  myResend() {
+    this.resend()
+  }
+
   showComponent(theme) {
     return (
       <KeyboardAvoidingView behavior="padding" style={Styles.section}>
@@ -164,12 +195,12 @@ class MyConfirmSignUp  extends ConfirmSignUp  {
           />
           <UserButton
               title={I18n.get('Confirm')}
-              onPress={this.confirm}
+              onPress={this.myConfirm}
               disabled={!this.state.username || !this.state.code}
           />
           <UserButton
               title={I18n.get('Resend a Code')}
-              onPress={this.resend}
+              onPress={this.myResend}
               disabled={!this.state.username}
           />
         </View>
@@ -177,9 +208,6 @@ class MyConfirmSignUp  extends ConfirmSignUp  {
           <LinkCell onPress={() => this.changeState('signIn')}>
               {I18n.get('Back to Sign In')}
           </LinkCell>
-        </View>
-        <View style={Styles.errorRow}>
-          <Text style={Styles.erroRowText}>{this.state.error}</Text>
         </View>
       </KeyboardAvoidingView>
     );
@@ -194,12 +222,23 @@ class MySignUp extends SignUp {
       press: false,
     };
     this.showPass = this.showPass.bind(this);
+    this.mySignUp = this.mySignUp.bind(this);
+  }
+
+  mySignUp() {
+    this.signUp()
   }
 
   showPass() {
     this.state.press === false
       ? this.setState({showPass: false, press: true})
       : this.setState({showPass: true, press: false});
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if ((prevState.error != this.state.error) && (this.state.error != undefined)) {
+      this.props.onError(this.state.error);
+    }
   }
 
   showComponent(theme) {
@@ -237,7 +276,7 @@ class MySignUp extends SignUp {
           />
           <UserButton
               title={I18n.get('Sign Up')}
-              onPress={this.signUp}
+              onPress={this.mySignUp}
               disabled={!this.state.username || !this.state.password}
           />
         </View>
@@ -248,9 +287,6 @@ class MySignUp extends SignUp {
           <LinkCell onPress={() => this.changeState('signIn')}>
               {I18n.get('Sign In')}
           </LinkCell>
-        </View>
-        <View style={Styles.errorRow}>
-          <Text style={Styles.erroRowText}>{this.state.error}</Text>
         </View>
       </KeyboardAvoidingView>
     );
@@ -265,12 +301,23 @@ class MySignIn extends SignIn {
       press: false,
     };
     this.showPass = this.showPass.bind(this);
+    this.mySignIn = this.mySignIn.bind(this);
+  }
+
+  mySignIn() {
+    this.signIn()
   }
 
   showPass() {
     this.state.press === false
       ? this.setState({showPass: false, press: true})
       : this.setState({showPass: true, press: false});
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if ((prevState.error != this.state.error) && (this.state.error != undefined)) {
+      this.props.onError(this.state.error);
+    }
   }
 
   showComponent(theme) {
@@ -299,7 +346,7 @@ class MySignIn extends SignIn {
           />
           <UserButton
               title={I18n.get('Sign In')}
-              onPress={this.signIn}
+              onPress={this.mySignIn}
               disabled={!this.state.username || !this.state.password}
           />
         </View>
@@ -311,18 +358,14 @@ class MySignIn extends SignIn {
               {I18n.get('Sign Up')}
           </LinkCell>
         </View>
-        <View style={Styles.errorRow}>
-          <Text style={Styles.erroRowText}>{this.state.error}</Text>
-        </View>
       </KeyboardAvoidingView>
     );
   }
 }
 
-class Authentication extends Component {
+class Authentication extends DropdownAlertComp {
 
   handleAuthStateChange(state) {
-    console.log(state)
     if (state === 'signedIn') {
         Actions.dashboard();
     }
@@ -337,12 +380,12 @@ class Authentication extends Component {
             federated={federated}
             sceneStyle={Styles.container}>
           <Logo/>
-          <MySignIn/>
-          <MySignUp/>
-          <MyConfirmSignUp/>
-          <MyForgotPassword/>
-          <VerifyContact/>
+          <MySignIn onSuccess={this.onSuccess} onError={this.onError}/>
+          <MySignUp onSuccess={this.onSuccess} onError={this.onError}/>
+          <MyConfirmSignUp onSuccess={this.onSuccess} onError={this.onError}/>
+          <MyForgotPassword onSuccess={this.onSuccess} onError={this.onError}/>
           <Greetings/>
+          {this.showDropdownAlert()}
         </DismissKeyboardAuthenticator>
     );
   }
