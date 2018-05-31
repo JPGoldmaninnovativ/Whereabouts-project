@@ -15,9 +15,14 @@ import {
   Text,
   TouchableOpacity
   } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 
 export default class MainGrid extends React.Component {
+  group = () => {
+    Actions.navigator();
+  };
+
   render() {
     return (
 
@@ -26,7 +31,7 @@ export default class MainGrid extends React.Component {
                     <TouchableOpacity onPress={this.group} style={styles.bodyItem}>
                         <View style={styles.photoWrap}>
                          <Image style={styles.photo} source={require('../../images/group.jpg')}/>
-                         <Text style={styles.text}>my Activity Group</Text>
+                         <Text style={styles.text}>My Activity Group</Text>
                         </View>
                      </TouchableOpacity>
                      <TouchableOpacity onPress={this.live} style={styles.bodyItem}>

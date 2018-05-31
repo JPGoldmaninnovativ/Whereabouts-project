@@ -1,6 +1,8 @@
+import { AppLoading } from 'expo';
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  AsyncStorage,
   StyleSheet,
   Text,
   View,
@@ -8,6 +10,7 @@ import {
   Button,
   TouchableHighlight,
   KeyboardAvoidingView,
+  UIManager,
 } from 'react-native';
 import { Font } from 'expo';
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
@@ -19,19 +22,24 @@ import Logo from './src/components/Logo';
 import Dashboard from './src/components/dashboard/Dashboard';
 import UserInput from './src/components/login/UserInput';
 import UserButton from './src/components/login/UserButton';
-import DismissKeyboardHOC from './src/components/DismissKeyboardHOC'
-import DropdownAlertComp from './src/components/DropdownAlertComp'
+import DismissKeyboardHOC from './src/components/DismissKeyboardHOC';
+import DropdownAlertComp from './src/components/DropdownAlertComp';
+import Navigator from './src/routes/Navigator';
 
 import usernameImg from './src/images/ic_account_circle_black_48dp/web/ic_account_circle_black_48dp_2x.png';
 import passwordImg from './src/images/ic_lock_black_48dp/web/ic_lock_black_48dp_2x.png';
 import eyeImg from './src/images/ic_account_circle_black_48dp/web/ic_account_circle_black_48dp_2x.png';
 
 // redux
-//import { createStore, applyMiddleware } from 'redux'
-//import { Provider } from 'react-redux'
-//import rootReducer from './src/components/reducers'
-//import thunk from 'redux-thunk'
-//const store = createStore(rootReducer, applyMiddleware(thunk))
+import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import Colors from './constants/Colors';
+import { fontAssets } from './helpers';
+import store from './src/redux/store';
+
+if (UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 // Amplify
 import Amplify from 'aws-amplify-react-native';
@@ -395,23 +403,38 @@ class Authentication extends DropdownAlertComp {
 export default class App extends Component {
   constructor(props) {
       super(props);
-      this.state = { fontLoaded: false };
+      this.state = {
+        fontLoaded: false,
+        ready: false,
+      };
     }
 
-  async componentDidMount() {
-    await Font.loadAsync({
-        'Lato-Regular': require('./src/fonts/Lato-Regular.ttf'),
-        'Lato-Light': require('./src/fonts/Lato-Light.ttf'),
-        'Lato-Hairline': require('./src/fonts/Lato-Hairline.ttf'),
-        'Lato-Bold': require('./src/fonts/Lato-Bold.ttf'),
-    });
+  componentDidMount() {
+    this._loadAssetsAsync();
+    persistStore(
+      store,
+      {
+        storage: AsyncStorage,
+        whitelist: [
+          'user',
+        ],
+      },
+      () => this.setState({ ready: true })
+    );
+  }
+
+  async _loadAssetsAsync() {
+    await Promise.all(fontAssets);
 
     this.setState({ fontLoaded: true });
   }
 
   render() {
-    if (this.state.fontLoaded) {
-      return (
+    if (!this.state.fontLoaded || !this.state.ready) {
+      return <AppLoading />;
+    }
+    return (
+      <Provider store={store}>
         <Wallpaper>
           <Router sceneStyle={styles.sceneStyle}
             navigationBarStyle={{backgroundColor: 'transparent', borderBottomWidth: 0 }}
@@ -428,12 +451,16 @@ export default class App extends Component {
                 animation='fade'
                 hideNavBar={true}
               />
+              <Scene key="navigator"
+                component={Navigator}
+                animation='fade'
+                hideNavBar={true}
+              />
             </Scene>
           </Router>
         </Wallpaper>
-      );
-    }
-    return null
+      </Provider>
+    );
   }
 }
 
