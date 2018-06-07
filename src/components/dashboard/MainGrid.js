@@ -16,11 +16,28 @@ import {
   TouchableOpacity
   } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { API } from 'aws-amplify';
 
 
 export default class MainGrid extends React.Component {
   group = () => {
     Actions.navigator();
+  };
+
+  live = () => {
+    console.log("hej");
+    let apiName = 'Whaapp';
+    let path = '/group/debug/asdf';
+    let myInit = {
+      headers: {},
+      response: true,
+      queryStringParameters: {},
+    };
+    API.get(apiName, path, myInit).then(response => {
+        console.log("Response: ", response.data);
+    }).catch(error => {
+        console.log("Error: ", error.response);
+    });
   };
 
   render() {

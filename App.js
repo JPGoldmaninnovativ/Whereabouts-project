@@ -42,7 +42,7 @@ if (UIManager.setLayoutAnimationEnabledExperimental) {
 }
 
 // Amplify
-import Amplify from 'aws-amplify-react-native';
+import Amplify, { I18n } from 'aws-amplify';
 import config from './src/aws-exports';
 import {
   Authenticator,
@@ -51,7 +51,6 @@ import {
   ConfirmSignUp,
   ForgotPassword,
   Greetings } from 'aws-amplify-react-native';
-import { I18n } from 'aws-amplify';
 Amplify.configure(config);
 
 const federated = {
