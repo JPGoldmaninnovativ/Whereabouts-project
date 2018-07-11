@@ -20,7 +20,6 @@ class HomeScreen extends Component {
   }
 
   render() {
-    console.log(this.props);
     const {
       myMeetups: {
         isFetched,

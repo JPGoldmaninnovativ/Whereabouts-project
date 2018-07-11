@@ -18,6 +18,8 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { API } from 'aws-amplify';
 
+import { getGroupsByOwner } from '../../../constants/api/GroupController';
+
 
 export default class MainGrid extends React.Component {
   group = () => {
@@ -25,18 +27,10 @@ export default class MainGrid extends React.Component {
   };
 
   live = () => {
-    console.log("hej");
-    let apiName = 'Whaapp';
-    let path = '/group/debug/asdf';
-    let myInit = {
-      headers: {},
-      response: true,
-      queryStringParameters: {},
-    };
-    API.get(apiName, path, myInit).then(response => {
-        console.log("Response: ", response.data);
-    }).catch(error => {
-        console.log("Error: ", error.response);
+    getGroupsByOwner('af1beae3-4b97-445f-ab78-1dbcc14deda0', response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
     });
   };
 

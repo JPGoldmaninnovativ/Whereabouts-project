@@ -34,4 +34,3 @@ const MyMeetupsList = ({ meetups }) => (
 );
 
 export default MyMeetupsList;
-
