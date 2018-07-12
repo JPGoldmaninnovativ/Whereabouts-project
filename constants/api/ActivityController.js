@@ -45,9 +45,6 @@ export async function getActivitiesById(id, successCallback, errorCallback) {
 };
 
 export async function getActivitiesByGroup(id, successCallback, errorCallback) {
-  console.log("HEJHEJHEJHEJ");
-  console.log("HEJHEJHEJHEJ");
-  console.log("HEJHEJHEJHEJ");
   let path = '/activity/group/'.concat(id);
   let init = {
     headers: {},
