@@ -13,7 +13,6 @@ import {
   UIManager,
 } from 'react-native';
 import { Font } from 'expo';
-import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import DropdownAlert from 'react-native-dropdownalert';
 
 import { Styles } from  './src/themes/theme';
@@ -24,7 +23,6 @@ import UserInput from './src/components/login/UserInput';
 import UserButton from './src/components/login/UserButton';
 import DismissKeyboardHOC from './src/components/DismissKeyboardHOC';
 import DropdownAlertComp from './src/components/DropdownAlertComp';
-import Navigator from './src/routes/Navigator';
 
 import usernameImg from './src/images/ic_account_circle_black_48dp/web/ic_account_circle_black_48dp_2x.png';
 import passwordImg from './src/images/ic_lock_black_48dp/web/ic_lock_black_48dp_2x.png';
@@ -373,9 +371,9 @@ class MySignIn extends SignIn {
 class Authentication extends DropdownAlertComp {
 
   handleAuthStateChange(state) {
-    if (state === 'signedIn') {
-        Actions.dashboard();
-    }
+    //if (state === 'signedIn') {
+    //    Actions.dashboard();
+    //}
   }
 
   render() {
@@ -391,7 +389,7 @@ class Authentication extends DropdownAlertComp {
           <MySignUp onSuccess={this.onSuccess} onError={this.onError}/>
           <MyConfirmSignUp onSuccess={this.onSuccess} onError={this.onError}/>
           <MyForgotPassword onSuccess={this.onSuccess} onError={this.onError}/>
-          <Greetings/>
+          <Dashboard/>
           {this.showDropdownAlert()}
         </DismissKeyboardAuthenticator>
     );
@@ -435,28 +433,8 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Wallpaper>
-          <Router sceneStyle={styles.sceneStyle}
-            navigationBarStyle={{backgroundColor: 'transparent', borderBottomWidth: 0 }}
-            getSceneStyle={()=>styles.sceneStyle}>
-            <Scene key="root">
-              <Scene key="loginScreen"
-                component={Authentication}
-                animation='fade'
-                hideNavBar={true}
-                initial={true}
-              />
-              <Scene key="dashboard"
-                component={Dashboard}
-                animation='fade'
-                hideNavBar={true}
-              />
-              <Scene key="navigator"
-                component={Navigator}
-                animation='fade'
-                hideNavBar={true}
-              />
-            </Scene>
-          </Router>
+          <Authentication>
+          </Authentication>
         </Wallpaper>
       </Provider>
     );
@@ -486,9 +464,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     width: '100%',
     height: '100%'
-  },
-  signIn: {
-
   },
 });
 

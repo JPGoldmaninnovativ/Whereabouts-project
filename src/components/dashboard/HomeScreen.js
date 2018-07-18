@@ -19,7 +19,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
         drawerIcon: (
-            <Image source={require('./assets/home.png')}
+            <Image source={require('./../../images/home.png')}
                 style={{ height: 24, width: 24 }} />
         )
     }
@@ -43,7 +43,7 @@ export default class HomeScreen extends React.Component {
                             <Text style={styles.header}>H O M E</Text>
                         </View>
                         <View style={styles.menuContainer}>
-                        
+
                         </View>
                     </View>
 
@@ -54,27 +54,27 @@ export default class HomeScreen extends React.Component {
                         <TouchableOpacity onPress={this.group} >
 
                             <View style={styles.photoWrap}>
-                                <Image style={styles.photo} source={require('./assets/Umeabg.jpg')} />
+                                <Image style={styles.photo} source={require('./../../images/Umeabg.jpg')} />
                             </View>
                         </TouchableOpacity>
 
 
                         <TouchableOpacity onPress={this.live}>
                             <View style={styles.photoWrap}>
-                                <Image style={styles.photo} source={require('./assets/group.jpg')} />
+                                <Image style={styles.photo} source={require('./../../images/group.jpg')} />
                             </View>
                         </TouchableOpacity>
 
 
                         <TouchableOpacity onPress={this.event} >
                             <View style={styles.photoWrap}>
-                                <Image style={styles.photo} source={require('./assets/event.jpg')} />
+                                <Image style={styles.photo} source={require('./../../images/event.jpg')} />
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={this.todo} >
                             <View style={styles.photoWrap}>
-                                <Image style={styles.photo} source={require('./assets/todo.jpg')} />
+                                <Image style={styles.photo} source={require('./../../images/todo.jpg')} />
                             </View>
                         </TouchableOpacity>
 
@@ -146,4 +146,3 @@ const styles = StyleSheet.create({
 
     }
 });
-

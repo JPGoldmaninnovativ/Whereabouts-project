@@ -13,11 +13,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 class SettingsScreen extends Component {
 
-   
 
-    static navigationOptions = {  
+
+    static navigationOptions = {
         drawerIcon:(
-            <Image source={require('./assets/settings.png')} 
+            <Image source={require('./../../images/settings.png')} 
             style={{height:24,width:24}}/>
         )
     }
@@ -25,14 +25,14 @@ class SettingsScreen extends Component {
     render() {
         return (
             <Container>
-            <Header> 
+            <Header>
                 <Left>
                 <Ionicons name='md-menu' size={24} onPress={()=>this.props.navigation.navigate('DrawerOpen')}/>
                 </Left>
             </Header>
                <Content contentContainerStyle={{ flex:1,  alignItems: 'center', justifyContent: 'center', padding: 10
-                 } }> 
-        
+                 } }>
+
                 <Text> Settings Screen </Text>
                 </Content>
             </Container>
@@ -40,4 +40,3 @@ class SettingsScreen extends Component {
     }
 }
 export default SettingsScreen;
-

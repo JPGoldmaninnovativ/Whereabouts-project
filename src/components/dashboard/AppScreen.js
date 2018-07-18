@@ -10,7 +10,7 @@ import {
   Text,
   View,
   Image
-  
+
 } from 'react-native'
 
 // import { StackNavigator } from 'react-navigation'
@@ -20,11 +20,11 @@ import {
 // import DrawerNavigator from './screens/DrawerNavigator'
 
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
-import HomeScreen from './screens/HomeScreen'
-import SettingsScreen from './screens/SettingsScreens'
-import GroupScreen from './screens/GroupScreen'
-import BugsScreen from './screens/BugsScreen'
-import LogoutScreen from './screens/LogoutScreen'
+import HomeScreen from './HomeScreen'
+import SettingsScreen from './SettingsScreen'
+import GroupScreen from './GroupScreen'
+import BugsScreen from './BugsScreen'
+import LogoutScreen from './LogoutScreen'
 
 
 import { Container, Header, Content, Body, Icon } from 'native-base';
@@ -42,10 +42,10 @@ const CustomDrawerContentComponent = (props) => (
   <Container>
       <Header style={{ height: 200, backgroundColor: 'white' }}>
       <Body>
-          <Image style={styles.drawerImage} source={require('./screens/assets/profile.jpg')}  />
+          <Image style={styles.drawerImage} source={require('../../images/profile.jpg')}  />
        </Body>
       </Header>
-      <Content> 
+      <Content>
             <DrawerItems {...props} />
       </Content>
     </Container>
@@ -53,24 +53,24 @@ const CustomDrawerContentComponent = (props) => (
 
 const MyApp = DrawerNavigator ({
 
-  Home : { 
+  Home : {
        screen: HomeScreen,
   },
-  Activity : { 
+  Activity : {
     screen: GroupScreen,
   },
-  Bugs: { 
+  Bugs: {
     screen: BugsScreen,
   },
-  Settings: { 
+  Settings: {
     screen: SettingsScreen,
   },
-  Logout: { 
+  Logout: {
     screen: LogoutScreen,
   }
 
-  
-  },{ 
+
+  },{
       initialRouteName: 'Home',
       drawerPosition: 'left',
       contentComponent: CustomDrawerContentComponent,
@@ -87,12 +87,12 @@ export default App;
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    width: '100%'
   },
 
-  drawerImage:{  
+  drawerImage:{
     height: 150,
     width: 150,
     borderRadius: 75
   }
 });
-

@@ -15,6 +15,14 @@ const fonts = {
   bold: 'Lato-Bold'
 }
 const Styles = {
+    wrapper: {
+        flex: 1
+    },
+    app: {
+        flex: 1,
+        width: DEVICE_WIDTH,
+        height: DEVICE_HEIGHT,
+    },
     container: {
         flex: 2,
         flexDirection: 'column',
@@ -26,6 +34,7 @@ const Styles = {
     },
     section: {
         flex: 2,
+        paddingTop: DEVICE_HEIGHT*2/5,
         width: '100%'
     },
     sectionHeader: {
@@ -46,8 +55,7 @@ const Styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         position: 'absolute',
-        height: 70,
-        top: DEVICE_HEIGHT*2/5,
+        paddingTop: DEVICE_HEIGHT*4/5,
         width: DEVICE_WIDTH,
     },
     sectionFooterLink: {
@@ -79,7 +87,15 @@ const Styles = {
 
     input: {
         margin: 6
-    }
+    },
+
+    logo: {
+      position: 'absolute',
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      top: DEVICE_HEIGHT*1/4,
+    },
 }
 export {
   colors,
