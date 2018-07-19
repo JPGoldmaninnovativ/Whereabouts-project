@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { Platform, FlatList, StyleSheet, Text, View, Image } from 'react-native';
-import InfoData from '../data/InfoData';
+import InfoData from '../../../data/InfoData';
 
 class DataListItem extends Component {
     render() {          
