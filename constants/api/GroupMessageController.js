@@ -2,6 +2,18 @@ import { API } from 'aws-amplify';
 
 const apiName = 'Whaapp';
 
+/* Exmple groupMessage object
+ * {
+ *   owner: "UUID",
+ *   id: "UUID",
+ *   group: "UUID",
+ *   message: "Message.",
+ *   parent: "UUID",
+ *   creationdate: "date",
+ *   editdate: "date",
+ *   location: "location"
+ * }
+ */
 export async function getGroupMessagesByOwner(owner, successCallback, errorCallback) {
   let path = '/message/group/owner/'.concat(owner);
   let init = {

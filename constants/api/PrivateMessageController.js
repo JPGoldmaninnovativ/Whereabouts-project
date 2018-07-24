@@ -2,6 +2,17 @@ import { API } from 'aws-amplify';
 
 const apiName = 'Whaapp';
 
+/* Exmple privateMessage object
+ * {
+ *   owner: "UUID",
+ *   id: "UUID",
+ *   recipient: "UUID",
+ *   message: "Message.",
+ *   creationdate: "date",
+ *   editdate: "date",
+ *   location: "location"
+ * }
+ */
 export async function getPrivateMessagesByOwner(owner, successCallback, errorCallback) {
   let path = '/message/private/owner/'.concat(owner);
   let init = {

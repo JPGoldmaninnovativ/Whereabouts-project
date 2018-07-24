@@ -2,6 +2,14 @@ import { API } from 'aws-amplify';
 
 const apiName = 'Whaapp';
 
+
+/* Exmple participant object
+ * {
+ *   owner: "UUID",
+ *   activity: "UUID",
+ *   status: "status"
+ * }
+ */
 export async function getParticipantsByOwner(owner, successCallback, errorCallback) {
   let path = '/participant/owner/'.concat(owner);
   let init = {
