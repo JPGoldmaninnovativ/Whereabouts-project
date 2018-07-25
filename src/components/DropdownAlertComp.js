@@ -78,7 +78,7 @@ export default class DropdownAlertComp extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   titleStyle: {
     fontSize: 16,
     textAlign: 'left',
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'transparent',
   },
-});
+};
