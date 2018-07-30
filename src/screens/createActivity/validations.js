@@ -1,4 +1,4 @@
-export const createMeetupValidations = values => {
+export const createActivityValidations = values => {
   const errors = {};
   const requiredFields = ['title', 'description'];
   const needLonger = 'Need to be longer';
@@ -7,11 +7,8 @@ export const createMeetupValidations = values => {
       errors[field] = 'Required';
     }
   });
-  if (values.title && values.title.length < 6) {
+  if (values.title && values.title.length < 4) {
     errors.title = needLonger;
-  }
-  if (values.description && values.description.length < 6) {
-    errors.description = needLonger;
   }
 
   return errors;

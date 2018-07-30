@@ -3,13 +3,17 @@ import { reducer as form } from 'redux-form';
 
 import {
   HomeReducer,
-  CreateMeetupReducer,
+  ActivitiesReducer,
+  CreateGroupReducer,
+  CreateActivityReducer,
+  ProfileReducer,
 } from '../screens';
-import navigation from '../routes/navigationReducer';
 
 export default combineReducers({
   home: HomeReducer,
-  createMeetup: CreateMeetupReducer,
-  navigation,
+  activities: ActivitiesReducer,
+  createGroup: CreateGroupReducer,
+  createActivity: CreateActivityReducer,
+  profile: ProfileReducer,
   form,
 });

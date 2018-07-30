@@ -1,10 +1,10 @@
-import { getActivitiesByGroup } from '../../../constants/api/ActivityController';
+import { getGroupsByCategory } from '../../../constants/api/GroupController';
 
-export const FETCH_MY_MEETUPS = 'FETCH_MY_MEETUPS';
+export const FETCH_GROUPS = 'FETCH_GROUPS';
 
-const fakeGroup = 'af1beae3-4b97-445f-ab78-1dbcc14deda0';
+const publicGroup = 'public';
 
-export const fetchMyMeetups = () => ({
-  type: FETCH_MY_MEETUPS,
-  payload: getActivitiesByGroup(fakeGroup),
+export const fetchGroups = () => ({
+  type: FETCH_GROUPS,
+  payload: getGroupsByCategory(publicGroup),
 });

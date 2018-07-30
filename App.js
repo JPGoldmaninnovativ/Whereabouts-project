@@ -15,6 +15,11 @@ import {
 import { Font } from 'expo';
 import DropdownAlert from 'react-native-dropdownalert';
 
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from './constants/Colors';
+
+EStyleSheet.build(Colors);
+
 import { Styles } from  './src/themes/theme';
 import Wallpaper from './src/components/Wallpaper';
 import Logo from './src/components/Logo';
@@ -31,7 +36,6 @@ import eyeImg from './src/images/ic_account_circle_black_48dp/web/ic_account_cir
 // redux
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
-import Colors from './constants/Colors';
 import { fontAssets } from './helpers';
 import store from './src/redux/store';
 

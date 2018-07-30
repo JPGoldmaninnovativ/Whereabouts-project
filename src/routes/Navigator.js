@@ -6,7 +6,8 @@ import styled from 'styled-components/native';
 
 import HomeNavigator from './HomeNavigator';
 import {
-  CreateMeetupScreen,
+  CreateGroupScreen,
+  CreateActivityScreen,
 } from '../screens';
 import Colors from '../../constants/Colors';
 
@@ -16,10 +17,10 @@ const CloseButton = styled(Touchable)`
 
 export default StackNavigator({
   Home: { screen: HomeNavigator },
-  CreateMeetup: {
-    screen: CreateMeetupScreen,
+  CreateGroup: {
+    screen: CreateGroupScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Create a new Meetup',
+      title: 'Create a new Group',
       headerStyle: {
         backgroundColor: Colors.redColor,
       },
@@ -37,6 +38,27 @@ export default StackNavigator({
       ),
     }),
   },
+    CreateActivity: {
+      screen: CreateActivityScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Create a new Activity',
+        headerStyle: {
+          backgroundColor: Colors.redColor,
+        },
+        headerTitleStyle: {
+          color: Colors.whiteColor,
+        },
+        headerLeft: (
+          <CloseButton feedback="opacity" onPress={() => navigation.goBack()}>
+            <MaterialIcons
+              name="close"
+              color="#fff"
+              size={30}
+            />
+          </CloseButton>
+        ),
+      }),
+    },
 }, {
   mode: 'modal',
 });

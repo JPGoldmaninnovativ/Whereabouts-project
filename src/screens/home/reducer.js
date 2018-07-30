@@ -1,9 +1,9 @@
 import {
-  FETCH_MY_MEETUPS,
+  FETCH_GROUPS,
 } from './actions';
 
 const INITIAL_STATE = {
-  myMeetups: {
+  groups: {
     data: [],
     isFetched: false,
     error: {
@@ -15,11 +15,11 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case `${FETCH_MY_MEETUPS}_PENDING`:
+    case `${FETCH_GROUPS}_PENDING`:
       return INITIAL_STATE;
-    case `${FETCH_MY_MEETUPS}_FULFILLED`:
+    case `${FETCH_GROUPS}_FULFILLED`:
       return {
-        myMeetups: {
+        groups: {
           data: action.payload,
           isFetched: true,
           error: {
@@ -28,14 +28,14 @@ export default (state = INITIAL_STATE, action) => {
           },
         },
       };
-    case `${FETCH_MY_MEETUPS}_REJECTED`:
+    case `${FETCH_GROUPS}_REJECTED`:
       return {
-        myMeetups: {
+        groups: {
           data: [],
           isFetched: true,
           error: {
             on: true,
-            message: 'Error when fetching my meetups',
+            message: 'Error when fetching my groups',
           },
         },
       };

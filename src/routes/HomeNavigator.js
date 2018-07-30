@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 import Colors from '../../constants/Colors';
 import {
   HomeScreen,
-  NotificationsScreen,
+  ActivitiesScreen,
   ProfileScreen,
 } from '../screens';
 
@@ -25,7 +25,7 @@ export default TabNavigator({
     navigationOptions: ({ navigation }) => ({
       headerStyle: NavbarDefaultStyle,
       headerRight: (
-        <AddButton feedback="opacity" onPress={() => navigation.navigate('CreateMeetup')}>
+        <AddButton feedback="opacity" onPress={() => navigation.navigate('CreateGroup')}>
           <MaterialIcons
             name="add-circle"
             size={30}
@@ -42,10 +42,19 @@ export default TabNavigator({
       ),
     }),
   },
-  Notifications: {
-    screen: NotificationsScreen,
-    navigationOptions: {
+  Activities: {
+    screen: ActivitiesScreen,
+    navigationOptions: ({ navigation }) => ({
       headerStyle: NavbarDefaultStyle,
+      headerRight: (
+          <AddButton feedback="opacity" onPress={() => navigation.navigate('CreateActivity')}>
+            <MaterialIcons
+              name="add-circle"
+              size={30}
+              color="#fff"
+            />
+          </AddButton>
+        ),
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
           name="notifications"
@@ -53,7 +62,7 @@ export default TabNavigator({
           color={tintColor}
         />
       ),
-    },
+    }),
   },
   ProfileScreen: {
     screen: ProfileScreen,

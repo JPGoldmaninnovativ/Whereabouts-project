@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 
-import { CreateMeetupForm } from './components';
+import { CreateGroupForm } from './components';
 import { LoadingScreen } from '../../components/commons';
-import { createMeetup } from './actions';
-import styles from './styles/CreateMeetupScreen';
+import { createGroup } from './actions';
+import styles from './styles/CreateGroupScreen';
 
 @connect(
   state => ({
-    meetup: state.createMeetup,
+    group: state.createGroup,
   }),
-  { createMeetup }
+  { createGroup }
 )
-export default class CreateMeetupScreen extends Component {
+export default class CreateGroupScreen extends Component {
   state = {
     isDateTimePickerVisible: false,
     date: moment(),
@@ -35,7 +35,7 @@ export default class CreateMeetupScreen extends Component {
     if (date > moment()) {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a');
     }
-    return 'Pick a meetup date';
+    return 'Pick a group date';
   }
 
   _checkIfButtonSubmitDisabled() {
@@ -47,32 +47,32 @@ export default class CreateMeetupScreen extends Component {
     return true;
   }
 
-  _createMeetup = async values => {
-    await this.props.createMeetup(values);
+  _createGroup = async values => {
+    await this.props.createGroup(values);
     this.props.navigation.goBack();
   }
 
   render() {
     const {
-      meetup,
+      group,
     } = this.props;
-    if (meetup.isLoading) {
+    if (group.isLoading) {
       return (
         <View style={styles.root}>
           <LoadingScreen />
         </View>
       );
-    } else if (meetup.error.on) {
+    } else if (group.error.on) {
       return (
         <View style={styles.root}>
-          <Text>{meetup.error.message}</Text>
+          <Text>{group.error.message}</Text>
         </View>
       );
     }
     return (
       <View style={styles.root}>
-        <CreateMeetupForm
-          createMeetup={this._createMeetup}
+        <CreateGroupForm
+          createGroup={this._createGroup}
           showDateTimePicker={this._showDateTimePicker}
           checkTitle={this._checkTitle()}
         />

@@ -3,25 +3,26 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { LoadingScreen } from '../../components/commons';
-import { MyMeetupsList } from './components';
+import { GroupsList } from './components';
 
-import { fetchMyMeetups } from './actions';
+import { fetchGroups } from './actions';
 import styles from './styles/HomeScreen';
 
 @connect(
   state => ({
-    myMeetups: state.home.myMeetups,
+    groups: state.home.groups,
   }),
-  { fetchMyMeetups }
+  { fetchGroups }
 )
+
 class HomeScreen extends Component {
   componentDidMount() {
-    this.props.fetchMyMeetups();
+    this.props.fetchGroups();
   }
 
   render() {
     const {
-      myMeetups: {
+      groups: {
         isFetched,
         data,
         error,
@@ -42,7 +43,7 @@ class HomeScreen extends Component {
           <Text>HomeScreen</Text>
         </View>
         <View style={styles.bottomContainer}>
-          <MyMeetupsList meetups={data} />
+          <GroupsList groups={data} />
         </View>
       </View>
     );

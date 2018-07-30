@@ -4,14 +4,13 @@ import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-native-elements';
 
 import { TextInputWithValidations } from '../../../components/commons';
-import { createMeetupValidations } from '../validations';
+import { createGroupValidations } from '../validations';
 import Colors from '../../../../constants/Colors';
-import styles from './styles/CreateMeetupForm';
+import styles from './styles/CreateGroupForm';
 
-const CreateMeetupForm = ({
-  createMeetup,
+const CreateGroupForm = ({
+  createGroup,
   checkTitle,
-  showDateTimePicker,
   handleSubmit,
   invalid,
   submitting,
@@ -32,28 +31,20 @@ const CreateMeetupForm = ({
       selectionColor={Colors.redColor}
       containerStyle={styles.item}
     />
-    <View style={styles.item}>
-      <Button
-        raised
-        fontFamily="montserrat"
-        onPress={showDateTimePicker}
-        title={checkTitle}
-      />
-    </View>
     <View style={styles.buttonCreate}>
       <Button
         backgroundColor={Colors.blackBlueColor}
-        title="Create Meetup"
+        title="Create Group"
         raised
         fontFamily="montserrat"
         disabled={invalid || submitting}
-        onPress={handleSubmit(createMeetup)}
+        onPress={handleSubmit(createGroup)}
       />
     </View>
   </View>
 );
 
 export default reduxForm({
-  form: 'createMeetup',
-  validate: createMeetupValidations,
-})(CreateMeetupForm);
+  form: 'createGroup',
+  validate: createGroupValidations,
+})(CreateGroupForm);

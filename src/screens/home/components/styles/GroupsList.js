@@ -17,36 +17,37 @@ const styles = EStyleSheet.create({
   contentContainer: {
     flex: 1,
   },
-  meetupCard: {
+  groupCard: {
     height: 200,
     width: 175,
     marginHorizontal: '1.5%',
     backgroundColor: '$redColor',
   },
-  meetupCardTopContainer: {
-    flex: 1,
+  groupCardTopContainer: {
+    flex: 0.4,
     position: 'relative',
   },
-  meetupCardTitle: {
+  groupCardTitle: {
     fontFamily: 'montserratBold',
-    position: 'absolute',
     color: '$whiteColor',
-    top: '2%',
+    top: '1%',
     left: '2.5%',
   },
-  meetupCardBottomContainer: {
-    flex: 0.4,
+  groupCardBottomContainer: {
+    flex: 1,
     backgroundColor: '$whiteColor',
     justifyContent: 'center',
     paddingHorizontal: '2.5%',
   },
-  meetupCardMetaName: {
+  groupCardMetaName: {
     fontSize: 15,
     fontFamily: 'montserrat',
   },
-  meetupCardMetaDate: {
+  groupCardMetaDate: {
     fontSize: 13,
     fontFamily: 'montserratLight',
+    top: '1.5%',
+    left: '2.5%',
   },
 });
 
