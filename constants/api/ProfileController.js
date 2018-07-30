@@ -1,5 +1,6 @@
 import { API, Storage } from 'aws-amplify';
 
+const apiName = 'Whaapp';
 
 /* Exmple profile object
  * {
@@ -10,6 +11,26 @@ import { API, Storage } from 'aws-amplify';
  * }
  */
 
+ export async function getMyProfiles(successCallback, errorCallback) {
+   let path = '/profile';
+   let init = {
+     headers: {},
+     response: true,
+     queryStringParameters: {},
+   };
+   try {
+     let res = await API.get(apiName, path, init);
+     if (typeof successCallback === "function") {
+       successCallback(res.data);
+     }
+     return res.data;
+   } catch(e) {
+     if (typeof successCallback === "function") {
+       errorCallback(e);
+     }
+     return e;
+   }
+ };
 
  export async function getProfilesByOwner(owner, successCallback, errorCallback) {
    let path = '/profile/owner/'.concat(owner);

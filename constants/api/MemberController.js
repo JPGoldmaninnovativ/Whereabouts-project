@@ -9,6 +9,28 @@ const apiName = 'Whaapp';
  *   group: "UUID"
  * }
  */
+
+export async function getMyMembers(successCallback, errorCallback) {
+  let path = '/member';
+  let init = {
+    headers: {},
+    response: true,
+    queryStringParameters: {},
+  };
+  try {
+    let res = await API.get(apiName, path, init);
+    if (typeof successCallback === "function") {
+      successCallback(res.data);
+    }
+    return res.data;
+  } catch(e) {
+    if (typeof successCallback === "function") {
+      errorCallback(e);
+    }
+    return e;
+  }
+};
+
 export async function getMembersByOwner(owner, successCallback, errorCallback) {
   let path = '/member/owner/'.concat(owner);
   let init = {

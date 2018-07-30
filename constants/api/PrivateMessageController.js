@@ -13,6 +13,28 @@ const apiName = 'Whaapp';
  *   location: "location"
  * }
  */
+
+export async function getMyPrivateMessages(successCallback, errorCallback) {
+  let path = '/message/private';
+  let init = {
+    headers: {},
+    response: true,
+    queryStringParameters: {},
+  };
+  try {
+    let res = await API.get(apiName, path, init);
+    if (typeof successCallback === "function") {
+      successCallback(res.data);
+    }
+    return res.data;
+  } catch(e) {
+    if (typeof successCallback === "function") {
+      errorCallback(e);
+    }
+    return e;
+  }
+};
+
 export async function getPrivateMessagesByOwner(owner, successCallback, errorCallback) {
   let path = '/message/private/owner/'.concat(owner);
   let init = {

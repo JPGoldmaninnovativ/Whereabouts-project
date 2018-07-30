@@ -15,6 +15,27 @@ const apiName = 'Whaapp';
  *   location: "location"
  * }
  */
+
+export async function getMyActivities(successCallback, errorCallback) {
+  let path = '/activity/';
+  let init = {
+    headers: {},
+    response: true,
+    queryStringParameters: {},
+  };
+  try {
+    let res = await API.get(apiName, path, init);
+    if (typeof successCallback === "function") {
+      successCallback(res.data);
+    }
+    return res.data;
+  } catch(e) {
+    if (typeof successCallback === "function") {
+      errorCallback(e);
+    }
+    return e;
+  }
+};
  
 export async function getActivitiesByOwner(owner, successCallback, errorCallback) {
   let path = '/activity/owner/'.concat(owner);

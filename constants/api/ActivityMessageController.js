@@ -15,6 +15,27 @@ const apiName = 'Whaapp';
  * }
  */
 
+export async function getMyActivityMessages(successCallback, errorCallback) {
+  let path = '/message/group';
+  let init = {
+    headers: {},
+    response: true,
+    queryStringParameters: {},
+  };
+  try {
+    let res = await API.get(apiName, path, init);
+    if (typeof successCallback === "function") {
+      successCallback(res.data);
+    }
+    return res.data;
+  } catch(e) {
+    if (typeof successCallback === "function") {
+      errorCallback(e);
+    }
+    return e;
+  }
+};
+
 export async function getActivityMessagesByOwner(owner, successCallback, errorCallback) {
   let path = '/message/group/owner/'.concat(owner);
   let init = {

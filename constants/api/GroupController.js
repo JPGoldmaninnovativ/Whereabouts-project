@@ -12,6 +12,27 @@ const apiName = 'Whaapp';
  * }
  */
 
+export async function getMyGroups(successCallback, errorCallback) {
+  let path = '/group';
+  let init = {
+    headers: {},
+    response: true,
+    queryStringParameters: {},
+  };
+  try {
+    let res = await API.get(apiName, path, init);
+    if (typeof successCallback === "function") {
+      successCallback(res.data);
+    }
+    return res.data;
+  } catch(e) {
+    if (typeof successCallback === "function") {
+      errorCallback(e);
+    }
+    return e;
+  }
+};
+
 export async function getGroupsByOwner(owner, successCallback, errorCallback) {
   let path = '/group/owner/'.concat(owner);
   let init = {
@@ -66,11 +87,13 @@ export async function getGroupsByCategory(category, successCallback, errorCallba
     if (typeof successCallback === "function") {
       successCallback(res.data);
     }
+    console.log(res)
     return res.data;
   } catch(e) {
     if (typeof successCallback === "function") {
       errorCallback(e);
     }
+    console.log(e)
     return e;
   }
 };
