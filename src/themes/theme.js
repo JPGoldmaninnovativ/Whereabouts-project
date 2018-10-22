@@ -34,7 +34,7 @@ const Styles = {
     },
     section: {
         flex: 2,
-        paddingTop: DEVICE_HEIGHT*2/5,
+        paddingTop: DEVICE_HEIGHT*1/4,
         width: '100%'
     },
     sectionHeader: {
@@ -55,7 +55,7 @@ const Styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         position: 'absolute',
-        paddingTop: DEVICE_HEIGHT*4/5,
+        paddingTop: DEVICE_HEIGHT*2/3,
         width: DEVICE_WIDTH,
     },
     sectionFooterLink: {
@@ -94,7 +94,7 @@ const Styles = {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      top: DEVICE_HEIGHT*1/4,
+      top: DEVICE_HEIGHT*1/12,
     },
 }
 export {

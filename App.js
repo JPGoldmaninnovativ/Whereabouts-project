@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
   KeyboardAvoidingView,
   UIManager,
+  Platform,
 } from 'react-native';
 import { Font } from 'expo';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -145,8 +146,9 @@ class MyForgotPassword extends ForgotPassword {
   }
 
   showComponent(theme) {
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
     return (
-      <KeyboardAvoidingView behavior="padding" style={Styles.section}>
+      <KeyboardAvoidingView behavior="padding" style={Styles.section} keyboardVerticalOffset={keyboardVerticalOffset} disabled>
         <Text style={Styles.sectionHeaderText}>
           {I18n.get('Forgot Password')}
         </Text>
@@ -180,8 +182,9 @@ class MyConfirmSignUp  extends ConfirmSignUp  {
   }
 
   showComponent(theme) {
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
     return (
-      <KeyboardAvoidingView behavior="padding" style={Styles.section}>
+      <KeyboardAvoidingView behavior="padding" style={Styles.section} keyboardVerticalOffset={keyboardVerticalOffset} disabled>
         <Text style={Styles.sectionHeaderText}>
           {I18n.get('Confirm Sign Up')}
         </Text>
@@ -251,8 +254,9 @@ class MySignUp extends SignUp {
   }
 
   showComponent(theme) {
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
     return (
-      <KeyboardAvoidingView behavior="padding" style={Styles.section}>
+      <KeyboardAvoidingView behavior="padding" style={Styles.section} keyboardVerticalOffset={keyboardVerticalOffset} disabled>
         <Text style={Styles.sectionHeaderText}>
           {I18n.get('Sign Up')}
         </Text>
@@ -330,8 +334,9 @@ class MySignIn extends SignIn {
   }
 
   showComponent(theme) {
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
     return (
-      <KeyboardAvoidingView behavior="padding" style={Styles.section}>
+      <KeyboardAvoidingView behavior="padding" style={Styles.section} keyboardVerticalOffset={keyboardVerticalOffset} disabled>
         <Text style={Styles.sectionHeaderText}>
           {I18n.get('Sign In')}
         </Text>
@@ -382,20 +387,23 @@ class Authentication extends DropdownAlertComp {
 
   render() {
     const DismissKeyboardAuthenticator = DismissKeyboardHOC(Authenticator);
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
     return (
-        <DismissKeyboardAuthenticator
-            hideDefault={true}
-            onStateChange={this.handleAuthStateChange}
-            federated={federated}
-            sceneStyle={Styles.container}>
-          <Logo/>
-          <MySignIn onSuccess={this.onSuccess} onError={this.onError}/>
-          <MySignUp onSuccess={this.onSuccess} onError={this.onError}/>
-          <MyConfirmSignUp onSuccess={this.onSuccess} onError={this.onError}/>
-          <MyForgotPassword onSuccess={this.onSuccess} onError={this.onError}/>
-          <Dashboard/>
-          {this.showDropdownAlert()}
-        </DismissKeyboardAuthenticator>
+        <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={keyboardVerticalOffset} enabled>
+            <DismissKeyboardAuthenticator
+                hideDefault={true}
+                onStateChange={this.handleAuthStateChange}
+                federated={federated}
+                sceneStyle={Styles.container}>
+              <Logo/>
+              <MySignIn onSuccess={this.onSuccess} onError={this.onError}/>
+              <MySignUp onSuccess={this.onSuccess} onError={this.onError}/>
+              <MyConfirmSignUp onSuccess={this.onSuccess} onError={this.onError}/>
+              <MyForgotPassword onSuccess={this.onSuccess} onError={this.onError}/>
+              <Dashboard/>
+              {this.showDropdownAlert()}
+            </DismissKeyboardAuthenticator>
+        </KeyboardAvoidingView>
     );
   }
 }
@@ -431,6 +439,7 @@ export default class App extends Component {
   }
 
   render() {
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : 0
     if (!this.state.fontLoaded || !this.state.ready) {
       return <AppLoading />;
     }
@@ -448,7 +457,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'transparent',
   },
   sceneStyle: {
     opacity: 1,
